@@ -36,22 +36,18 @@ public class Blob {
 		return sha1;
 	}
 	
-	public static void main (String [] args) {
-		System.out.println(generateSha1("some content"));
-	}
-	
-	private static void writeFile(String fileName) {
+	public static void writeFile(String fileName) {
 		try {
-		      File file = new File(fileName);
-		      if (file.createNewFile()) {
-		        System.out.println("File created: " + file.getName());
-		      } else {
-		        System.out.println("File already exists.");
-		      }
-		    } catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		    }
-		  }
+	      File file = new File(fileName);
+	      if (file.createNewFile()) {
+	        System.out.println("File created: " + file.getName());
+	      } else {
+	        System.out.println("File already exists.");
+	      }
+	    } catch (IOException e) {
+	      System.out.println("An error occurred.");
+	      e.printStackTrace();
+	    }
 	}
 }
+
