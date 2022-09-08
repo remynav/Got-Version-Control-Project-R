@@ -2,23 +2,30 @@ import java.util.*;
 import java.io.*;
 import java.security.MessageDigest;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Blob {
 	private String sha1;
 	
 	public Blob(String fileName) throws IOException {
-		Path filePath = Path.of(fileName);
-		String fileText = Files.readString(filePath);
+		Path filePath = Paths.get(fileName);
+		System.out.println(filePath);
+		String fileContent = Files.readString(filePath);
 		
-		this.sha1 = generateSha1(fileText);
+		this.sha1 = generateSha1(fileContent);
 	
 		//writing the file content to the sha1 file
-		writeFile(sha1);
-		FileWriter output = new FileWriter(System.getProperty("user.dir")+File.separator+"objects"+File.separator+sha1);
-		output.write(fileText);
-		output.close();
+		
+		Path p = Paths.get("objects"+File.separator+sha1);
+        try {
+            Files.writeString(p, fileContent, StandardCharsets.ISO_8859_1);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 	}
 	
 	private static String generateSha1(String text) {
@@ -36,18 +43,10 @@ public class Blob {
 		return sha1;
 	}
 	
-	public static void writeFile(String fileName) {
-		try {
-	      File file = new File(fileName);
-	      if (file.createNewFile()) {
-	        System.out.println("File created: " + file.getName());
-	      } else {
-	        System.out.println("File already exists.");
-	      }
-	    } catch (IOException e) {
-	      System.out.println("An error occurred.");
-	      e.printStackTrace();
-	    }
+	public String getSha1() {
+		return sha1;
 	}
+	
+	
 }
 
