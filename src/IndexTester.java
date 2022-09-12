@@ -13,5 +13,6 @@ public class IndexTester {
 		i.init();
 		i.add("test.txt");
 		i.add("oogabooga.txt.txt");
+		i.remove("oogabooga.txt.txt");
 	}
 }

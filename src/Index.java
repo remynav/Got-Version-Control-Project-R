@@ -8,13 +8,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Index {
-	private HashMap<String,String> files;
+	private HashMap<String, Blob> files;
 	
 	public Index() {		
 	}
 	
 	public void init() throws IOException {
-		files = new HashMap<String, String>();	
+		files = new HashMap<String, Blob>();	
 		Path p = Paths.get("index");
 		try {
             Files.writeString(p, "", StandardCharsets.ISO_8859_1);
@@ -27,15 +27,23 @@ public class Index {
 	
 	public void add(String fileName) throws IOException {
 		Blob b = new Blob(fileName);
-		files.put(fileName,b.getSha1());
+		files.put(fileName,b);
 		FileWriter fw = new FileWriter("index");
 		for (String key: files.keySet()) {
-			fw.write(key+" : "+files.get(key)+"\n");
+			fw.write(key+" : "+files.get(key).getSha1()+"\n");
 		}
 		fw.close();
 	}
 	    
-	public void remove(String fileName) {
+	public void remove(String fileName) throws IOException {
+		File toBeRemoved = new File("objects"+File.separator+files.get(fileName).getSha1());
+		toBeRemoved.delete();
 		
+		files.remove(fileName);
+		FileWriter fw = new FileWriter("index");
+		for (String key: files.keySet()) {
+			fw.write(key+" : "+files.get(key).getSha1()+"\n");
+		}
+		fw.close();		
 	}
 }
