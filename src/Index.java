@@ -10,11 +10,11 @@ import java.nio.file.Paths;
 public class Index {
 	private HashMap<String,String> files;
 	
-	public Index() {
-		files = new HashMap<String, String>();		
+	public Index() {		
 	}
 	
 	public void init() throws IOException {
+		files = new HashMap<String, String>();	
 		Path p = Paths.get("index");
 		try {
             Files.writeString(p, "", StandardCharsets.ISO_8859_1);
@@ -26,17 +26,16 @@ public class Index {
 	}
 	
 	public void add(String fileName) throws IOException {
-		Path p = Paths.get("index");
 		Blob b = new Blob(fileName);
-	    try {
-	        Files.writeString(p, fileName + " : "+b.getSha1(), StandardCharsets.ISO_8859_1);
-	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-	    }
+		files.put(fileName,b.getSha1());
+		FileWriter fw = new FileWriter("index");
+		for (String key: files.keySet()) {
+			fw.write(key+" : "+files.get(key)+"\n");
+		}
+		fw.close();
 	}
 	    
 	public void remove(String fileName) {
-		System.out.println();
+		
 	}
 }

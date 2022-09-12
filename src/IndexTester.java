@@ -11,5 +11,7 @@ public class IndexTester {
 	public static void main (String [] args) throws IOException{
 		Index i = new Index();
 		i.init();
+		i.add("test.txt");
+		i.add("oogabooga.txt.txt");
 	}
 }
