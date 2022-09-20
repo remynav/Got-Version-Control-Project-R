@@ -17,6 +17,7 @@ public class Commit {
 		commitSha1=generateSha1ForCommit();
 		Date d = new Date();
 		date = d.toString();
+		System.out.println(date);
 	}
 	
 	public String generateSha1ForCommit() {
