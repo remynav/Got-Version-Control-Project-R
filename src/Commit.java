@@ -26,8 +26,15 @@ public class Commit {
 	
 	public void writeToFile() {
 		String fileContent = pTree+"\n";
-		fileContent+="objects"+File.separator+previousCommit.getCommitSha1()+"\n";
-		fileContent+="objects"+File.separator+nextCommit.getCommitSha1()+"\n";
+		if (previousCommit!=null) {
+			fileContent+="objects"+File.separator+previousCommit.getCommitSha1();
+		}
+		fileContent+="\n";
+		if (nextCommit!=null) {
+			fileContent+="objects"+File.separator+nextCommit.getCommitSha1();
+		}
+		fileContent+="\n";
+		fileContent+=author+"\n";
 		fileContent+=date+"\n";
 		fileContent+=summary;
 		
@@ -53,5 +60,9 @@ public class Commit {
 		}
 		
 		return sha1;
+	}
+	
+	public String getCommitSha1() {
+		return commitSha1;
 	}
 }
