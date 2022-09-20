@@ -65,4 +65,12 @@ public class Commit {
 	public String getCommitSha1() {
 		return commitSha1;
 	}
+	
+	public void setNext(Commit next) {
+		nextCommit = next;
+	}
+	
+	public void setPrevious(Commit previous) {
+		previousCommit = previous;
+	}
 }
