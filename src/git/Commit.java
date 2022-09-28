@@ -27,7 +27,7 @@ public class Commit {
 		System.out.println(date);
 	}
 	
-	public Commit (String summary, String author, Commit previousCommit) {//new constructor 
+	public Commit (String summary, String author, Commit previousCommit) throws IOException {//new constructor 
 		
 		File sha1File = new File("Tree");
         sha1File.createNewFile();
