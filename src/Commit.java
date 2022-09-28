@@ -1,3 +1,11 @@
+import java.io.File;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.MessageDigest;
 import java.util.Date;
 
 public class Commit {
@@ -23,7 +31,7 @@ public class Commit {
 	
 	public String generateSha1ForCommit() {
 		String commitString = summary+"\n"+date+"\n"+author+"\n"+previousCommit;
-		return generateSha1(commitString;)
+		return generateSha1(commitString);
 	}
 	
 	public void writeToFile() {
