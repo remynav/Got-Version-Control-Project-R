@@ -1,3 +1,4 @@
+package git;
 import java.util.*;
 import java.io.*;
 import java.security.MessageDigest;
@@ -26,6 +27,15 @@ public class Blob {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+	}
+	
+	public static void writeFiles(String name, String contents) throws IOException {
+		File sha1File = new File(name);
+        sha1File.createNewFile();
+        
+        FileWriter myWriter = new FileWriter(sha1File.getName());
+        myWriter.write(contents);
+        myWriter.close();
 	}
 	
 	private static String generateSha1(String text) {

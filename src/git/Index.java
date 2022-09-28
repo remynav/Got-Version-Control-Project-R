@@ -1,3 +1,4 @@
+package git;
 import java.util.*;
 import java.io.*;
 import java.security.MessageDigest;
