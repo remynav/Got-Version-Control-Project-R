@@ -1,5 +1,3 @@
-package testers;
-
 import git.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterAll;
@@ -31,7 +28,7 @@ class TreeTester {
 	}
 	*/
 	@Test
-	public static void test() throws NoSuchAlgorithmException, IOException {
+	public static void test() {
 		ArrayList<String> arr = new ArrayList<String>();
 		arr.add("blob : 81e0268c84067377a0a1fdfb5cc996c93f6dcf9f");
 		arr.add("blob : 01d82591292494afd1602d175e165f94992f6f5f");
