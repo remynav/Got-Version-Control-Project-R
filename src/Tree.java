@@ -12,9 +12,9 @@ public class Tree {
 	private String treeSha1;
 	private String treeStr;
 	
-	public Tree(ArrayList<String> arr) throws NoSuchAlgorithmException, IOException {
+	public Tree(ArrayList<String> arr, ArrayList<String> fileNames ) throws NoSuchAlgorithmException, IOException {
 		treeStr = arrLstToStr(arr);
-		treeSha1 = strToSha1(treeStr);
+		treeSha1 = strToSha1(treeStr);//sha1 of the whole tree
 		File treeFile = new File("objects"+File.separator+treeSha1);
 		FileWriter fw = new FileWriter(treeFile);
 		if(treeFile.createNewFile()) {
@@ -24,7 +24,10 @@ public class Tree {
 			Files.deleteIfExists(Paths.get("/objects/" + treeSha1));
 			treeFile.createNewFile();
 		}
-		fw.write(treeStr);
+		//fw.write(treeStr);//change this to write each line plus the file name at the end- if its a commit there is no file name
+		for(int i=0;i<arr.size(); i++) {
+			fw.write(arr.get(i)+" "+ fileNames.get(i));
+		}
 		fw.close();
 	}
 	

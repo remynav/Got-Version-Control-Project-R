@@ -13,7 +13,7 @@ public class Index {
 	public Index() {		
 	}
 	
-	public void init() throws IOException {
+	public  void init() throws IOException {
 		files = new HashMap<String, Blob>();	
 		Path p = Paths.get("index");
 		try {
