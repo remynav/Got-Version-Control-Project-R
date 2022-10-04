@@ -12,7 +12,8 @@ public class Tree {
 	private String treeSha1;
 	private String treeStr;
 	
-	public Tree(ArrayList<String> arr, ArrayList<String> fileNames ) throws NoSuchAlgorithmException, IOException {
+	public Tree(ArrayList<String> arr, ArrayList<String> fileNames, String prevCommitName ) throws NoSuchAlgorithmException, IOException {
+		
 		treeStr = arrLstToStr(arr);
 		treeSha1 = strToSha1(treeStr);//sha1 of the whole tree
 		File treeFile = new File("objects"+File.separator+treeSha1);
@@ -27,6 +28,9 @@ public class Tree {
 		//fw.write(treeStr);//change this to write each line plus the file name at the end- if its a commit there is no file name
 		for(int i=0;i<arr.size(); i++) {
 			fw.write(arr.get(i)+" "+ fileNames.get(i));
+		}
+		if(!prevCommitName.equalsIgnoreCase("")) {
+			fw.write("tree : "+ prevCommitName);
 		}
 		fw.close();
 	}

@@ -22,6 +22,7 @@ public class Commit {
 	private String pTree;
 	private String commitSha1;
 	private ArrayList<String> fileNames;
+	private Commit parent;
 	
 	public Commit (String pTree, String summary, String author, Commit previousCommit) {
 		this.pTree=pTree;
@@ -40,6 +41,12 @@ public class Commit {
 		//when getting a parent commit get the sha1 of it
 		//convert index into an array list and write it into the tree
 		//String currentFileName;
+		this.summary=summary;
+		this.author=author;
+		this.previousCommit=previousCommit;
+		nextCommit=null;
+		commitSha1=generateSha1ForCommit();
+		
 		
 		String currFileName;
 		fileNames= new ArrayList<String>();
@@ -62,8 +69,16 @@ public class Commit {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		String prevCommitName;
+		if(previousCommit != null) {
+			Path p = Paths.get(previousCommit.generateSha1ForCommit());
+			prevCommitName= Files.readString(p);
+		}
+		else {
+			 prevCommitName="";
+		}
 		
-		Tree t= new Tree(indexIntoArray, fileNames);
+		Tree t= new Tree(indexIntoArray, fileNames, prevCommitName);
 		
 		
 //		File sha1File = new File("");
