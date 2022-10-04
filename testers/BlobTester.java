@@ -10,13 +10,13 @@ import java.io.*;
 
 public class BlobTester {
 	public static void main (String [] args) throws IOException {
-		 Path p = Paths.get("test.txt");
-	     try {
-	    	 Files.writeString(p, "example", StandardCharsets.ISO_8859_1);
-	     } catch (IOException e) {
-	    	 // TODO Auto-generated catch block
-	    	 e.printStackTrace();
-	     }
-	     Blob blobby = new Blob("test.txt");
+//		 Path p = Paths.get("test.txt");
+//	     try {
+//	    	 Files.writeString(p, "example", StandardCharsets.ISO_8859_1);
+//	     } catch (IOException e) {
+//	    	 // TODO Auto-generated catch block
+//	    	 e.printStackTrace();
+//	     }
+	     Blob blobby = new Blob("stuff.txt.txt");
 	}
 }

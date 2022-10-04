@@ -46,7 +46,7 @@ public class Commit {
 		ArrayList<String> indexIntoArray= new ArrayList<String>();
 		BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader("/index"));
+			reader = new BufferedReader(new FileReader(".//index"));
 			String line = reader.readLine();
 			String separator =":";
 			int sepPos = line.indexOf(separator);
